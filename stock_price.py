@@ -65,4 +65,4 @@ def ticker(entry):
 
 st.write('---')
 st.write('##### This is the number of shares worth $10,000. Figures rounded to nearest even numbers')
-st.write('BUY',number_of_shares(price),ticker(entry),'Shares LMT')
+st.write('BUY',number_of_shares(price),ticker(entry),'Shares LMT',price)
