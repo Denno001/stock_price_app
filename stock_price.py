@@ -1,19 +1,20 @@
 import streamlit as st
+import pyperclip as pp
 
 
 #..data enrty form...
 
 with st.form("my_form"):
    st.write('##### App to Convert Stock Orders')
-   entry = st.text_area('Paste Order Below:',height=200)
+   entry = st.text_area('Paste Signal Below:',height=200)
 
    # Every form must have a submit button.
    submitted = st.form_submit_button("Submit")
    if submitted:
        st.write(entry)
 
-st.write('---')
-st.write('''##### Below is the formatted entry: First word capitalized, 'Limit' deleted and LMT added''')
+#st.write('---')
+#st.write('''##### Below is the formatted entry: First word capitalized, 'Limit' deleted and LMT added''')
 #..caplitalizing first word and other operations...
 def cap_first_word(entry):      #..defining function
     if entry:
@@ -25,7 +26,7 @@ def cap_first_word(entry):      #..defining function
         return new_entry
     else:
         return 'Enter Your Order'
-st.write(cap_first_word(entry))
+#st.write(cap_first_word(entry))
 
 
 #..converting stock price from string to float...
@@ -37,6 +38,7 @@ def converting_to_float(entry):   #...converting price string to float...
     except:
         return None
 price = converting_to_float(entry)
+
 #st.write(price)
 #st.write(type(price))
 
@@ -52,6 +54,9 @@ def number_of_shares(price):
         return stock
     except:
         return entry
+shares = number_of_shares(price)
+
+
 
 #st.write('Buy',number_of_shares(price),'Shares')
 
@@ -65,4 +70,26 @@ def ticker(entry):
 
 st.write('---')
 st.write('##### This is the number of shares worth $10,000. Figures rounded to nearest even numbers')
-st.write('BUY',number_of_shares(price),ticker(entry),'Shares LMT',price)
+st.write('BUY','+'+str(shares),ticker(entry),'@'+str(price),'LMT')
+
+
+#..join to list....
+data = ('BUY','+'+str(shares),ticker(entry),'@'+str(price),'LMT')
+data = ' '.join(data)
+
+#..copy function....
+def main(data):
+    text_to_copy = data
+    copy_button = st.button('copy')
+    if copy_button:
+        if text_to_copy:
+            pp.copy(text_to_copy)
+            st.success('Copied to Clipboard!')
+        else:
+            st.warning('Enter text to copy')
+if __name__ == "__main__":
+    main(data)
+
+
+
+
