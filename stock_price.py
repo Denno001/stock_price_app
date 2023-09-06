@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 
 
 #..data enrty form...
@@ -77,7 +77,19 @@ st.write('BUY','+'+str(shares),ticker(entry),'@'+str(price),'LMT')
 data = ('BUY','+'+str(shares),ticker(entry),'@'+str(price),'LMT')
 data = ' '.join(data)
 
-
+#..copy function....
+def main(data):
+    text_to_copy = data
+    copy_button = st.button('Copy')
+    if copy_button:
+        if text_to_copy:
+            df=pd.DataFrame([data])
+            df.to_clipboard(index=False,header=False)
+            st.success('Copied to Clipboard!')
+        else:
+            st.warning('Enter text to copy')
+if __name__ == "__main__":
+    main(data)
 
 
 
