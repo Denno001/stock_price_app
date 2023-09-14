@@ -78,19 +78,28 @@ data = ('BUY','+'+str(shares),ticker(entry),'@'+str(price),'LMT')
 data = ' '.join(data)
 
 #..copy function....
-def main(data):
-    text_to_copy = data
-    copy_button = st.button('Copy')
-    if copy_button:
-        if text_to_copy:
-            df=pd.DataFrame([data])
-            df.to_clipboard(index=False,header=False)
-            st.success('Copied to Clipboard!')
-        else:
-            st.warning('Enter text to copy')
-if __name__ == "__main__":
-    main(data)
+#def main(data):
+ #   text_to_copy = data
+  #  copy_button = st.button('Copy')
+   # if copy_button:
+    #    if text_to_copy:
+     #       df=pd.DataFrame([data])
+      #      df.to_clipboard(index=False,header=False)
+       #     st.success('Copied to Clipboard!')
+        #else:
+         #   st.warning('Enter text to copy')
+#if __name__ == "__main__":
+ #   main(data)
 
 
+
+
+ #..copy using wrapping text to code....   
+#st.code(data,language='python')
+
+def copy(data):
+    st.code(data,language='python')
+    #return copy(data)
+copy(data)
 
 
