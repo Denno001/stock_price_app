@@ -17,7 +17,7 @@ with st.form("my_form"):
 #st.write('''##### Below is the formatted entry: First word capitalized, 'Limit' deleted and LMT added''')
 #..caplitalizing first word and other operations...
 def cap_first_word(entry):      #..defining function
-    if entry:
+    if entry:              #..checks if entry i.e input is made....
         entry = entry.split()        #..splits string into list
         entry[0]= entry[0].upper()   #...capitalizes first word in the list
         new_entry = ' '.join(entry)  #...joins list back to string
